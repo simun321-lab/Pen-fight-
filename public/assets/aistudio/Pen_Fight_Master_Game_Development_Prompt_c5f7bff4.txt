@@ -1,0 +1,330 @@
+# MASTER GAME DEVELOPMENT PROMPT
+## PEN FIGHT: THE SCHOOL DESK SERIES
+
+### 1. Project Overview
+
+Build a complete, polished, mobile-first browser game called **Pen Fight: The School Desk Series**.
+
+The game recreates the nostalgic school activity where students flick their pens across a wooden desk to knock an opponent's pens out of the playing area. Players must aim carefully, control their flick strength, understand collisions, and use strategy to win.
+
+The game should feel like a real, professionally developed mobile game, with smooth physics, a charming school-desk aesthetic, satisfying animations, and a complete collection of menus and gameplay systems.
+
+**Primary platform:** Mobile web browser, especially Android Chrome.
+
+**Technology:** HTML5, CSS3, JavaScript, Canvas API, and an appropriate lightweight 2D physics engine if useful. The game must work without requiring a paid API or account.
+
+**Design direction:** Warm wooden textures, dark navy interface panels, cream-colored typography, playful illustrated icons, yellow primary buttons, light-blue selections, rounded corners, and subtle shadows.
+
+Create original assets and original branding. Use the supplied screenshots as visual references for layout, feature organization, and general atmosphere, not as assets to copy directly.
+
+### 2. Main Menu
+
+Create a beautiful home screen featuring:
+
+- A distinctive Pen Fight logo and illustrated crossed pens.
+- A wooden school desk and lined notebook-paper background.
+- A profile icon and a settings/menu icon.
+- A player progress panel showing nickname, level, experience points, and wins.
+- A large yellow Play button.
+- Played matches counter.
+- Leaderboard, Stats, and Settings shortcuts.
+- A small version number at the bottom.
+
+The first screen should immediately communicate that this is a fun, nostalgic school game.
+
+Allow players to continue as guests without creating an account.
+
+### 3. Game Mode Selection
+
+After pressing Play, show a polished mode-selection screen with large illustrated cards.
+
+**VS Computer:** Play against an AI opponent with adjustable difficulty.
+
+**2 Players:** Two people play locally on the same device, taking turns. Clearly indicate whose turn it is.
+
+**Online Multiplayer:** Show a disabled Coming Soon option until real online functionality is implemented. Do not simulate real online multiplayer.
+
+### 4. Pen Selection Screen
+
+Build a dedicated pen-selection interface with a large, detailed pen preview on a wooden background.
+
+Every pen should have a name, visual design, description, and gameplay attributes.
+
+Include example pens:
+
+- Cheap Ballpoint
+- Classic Blue Ballpoint
+- Orange School Pen
+- Heavy Metal Pen
+- Balanced Tournament Pen
+- Rare Collector Pen
+
+Each pen may have different mass, length, grip, restitution, friction, and stability attributes. Balance these attributes so no pen is unfairly powerful.
+
+Provide left/right navigation, locked and unlocked pens, level requirements, a favourite-pen option, and a Classic/Real visual style toggle where appropriate.
+
+The selected pen should be visually distinguishable during gameplay.
+
+### 5. Core Gameplay
+
+This is the most important part of the entire project.
+
+Create a top-down 2D game board representing a real wooden school desk. Use realistic wood grain, scratches, pencil marks, slightly worn edges, and a clearly visible boundary.
+
+Place the player's pens on one side and the opponent's pens on the other.
+
+Each pen should be a detailed, elongated ballpoint pen with a barrel, cap, grip, clip, and tip. Use original vector or procedural graphics if image assets are unavailable.
+
+#### Aiming and flicking
+
+On mobile, the player must be able to touch and drag from their active pen to aim. Pulling farther away should determine the flick direction, while a power control determines the launch strength.
+
+Show a directional arrow, projected trajectory, and optional impact prediction. Include a cancel option before releasing the shot.
+
+The shot should launch when the player releases their finger or confirms the shot.
+
+#### Physics simulation
+
+Implement consistent 2D rigid-body-like physics.
+
+Include:
+
+- Mass-aware collision response.
+- Pen-to-pen collisions.
+- Angular rotation and rotation caused by impacts.
+- Velocity and momentum transfer.
+- Friction and gradual deceleration.
+- Slightly elastic impacts.
+- Collision detection that prevents pens from overlapping or passing through one another.
+- Desk-edge detection and elimination.
+- Proper handling of simultaneous collisions.
+- Stable simulation on different mobile frame rates.
+
+Use a fixed physics timestep or an equivalent stable simulation approach. Avoid making the game faster on high-refresh-rate screens.
+
+The pens should slide, spin, collide, and settle naturally. Avoid random teleportation or arbitrary elimination.
+
+#### Winning conditions
+
+A pen is eliminated when it crosses the desk's actual playable boundary.
+
+The player wins when the opponent has no surviving pens. The opponent wins when the player has no surviving pens.
+
+Display an animated victory or defeat screen, match statistics, and a Play Again button.
+
+If both players lose their last pen in the same simulation step, resolve the result using a clearly defined tie rule.
+
+### 6. Computer Opponent
+
+Create a genuine AI opponent rather than a purely random shooting script.
+
+Include four difficulty levels:
+
+**Easy:** Makes inaccurate shots and frequently misses good opportunities.
+
+**Normal:** Aims toward nearby opposing pens and considers the desk boundaries.
+
+**Hard:** Evaluates angles, collision opportunities, momentum, and the likelihood of knocking pens off the desk.
+
+**Master:** Uses more advanced shot evaluation and anticipates likely collision outcomes, while remaining beatable.
+
+The AI should select a pen, evaluate possible shots, choose a power level, and execute a move. Its accuracy should depend on difficulty.
+
+### 7. Match HUD and Controls
+
+During gameplay, display:
+
+- Player nickname and opponent name.
+- Match score.
+- Number of remaining pens.
+- Current player's turn.
+- Pause button.
+- Aiming guide and power indicator.
+- Optional trajectory and spin guides.
+- A clear instruction such as “Grab your pen” or “Your turn”.
+
+Design the interface for one-handed mobile use where practical.
+
+Provide responsive controls that work with both touch input and a mouse.
+
+### 8. Settings: “Make It Yours”
+
+Create a polished settings panel inspired by the supplied screenshots.
+
+Include:
+
+**Screen:** System, Light, and Dark themes.
+
+**Language:** English and Bangla. Make all interface text translation-ready.
+
+**Gameplay:** Aim guide toggle, reduced-motion toggle, vibration toggle when supported by the device, and automatic-next-match toggle.
+
+**Series length:** First to 3, First to 5, or Endless.
+
+**Sound:** Master sound toggle, overall volume, effects volume, and music volume.
+
+**Account:** Guest profile and profile customization.
+
+**Progress:** Back up progress, restore progress, and reset progress with a confirmation dialog.
+
+**About:** Game version, credits, privacy information, and feedback link.
+
+All settings must work. Do not include decorative switches that do nothing.
+
+### 9. Player Profile and Progression
+
+Create a profile screen featuring:
+
+- Editable nickname.
+- Original illustrated avatars.
+- XP and level progress bar.
+- Favourite pen.
+- Selected desk theme.
+- Matches played.
+- Wins and losses.
+- Current win streak and best streak.
+- Unlockable avatars and pens.
+
+Award XP for completed matches and additional rewards for winning. Progression should unlock cosmetic content without making the game unfair.
+
+Save progress locally using a suitable browser storage mechanism.
+
+Guest progress must remain usable without authentication. Clearly explain that browser data may be lost if the user clears site data.
+
+### 10. Statistics
+
+Build a dedicated Stats screen with a “Me” and “World” tab.
+
+For local statistics, track:
+
+- Total play time.
+- Average match duration.
+- Fastest win.
+- Longest match.
+- Matches played.
+- Win rate.
+- Best win streak.
+- Performance by difficulty.
+- Performance in VS Computer and 2 Players modes.
+
+Show unavailable statistics as unavailable rather than inventing data.
+
+The World tab should only display actual leaderboard information when a real backend exists. Otherwise, mark it as a future feature.
+
+### 11. Leaderboard
+
+Create a leaderboard screen with ranking, nickname, avatar, level, and wins.
+
+For the first version, provide a clearly labelled local leaderboard or a well-designed empty state.
+
+Design the architecture so a real backend can be integrated later. Never present fabricated online rankings as real players.
+
+### 12. Visual Design and Animation
+
+Aim for a cohesive, polished visual style across every screen.
+
+Use a dark navy interface, cream backgrounds, warm wood textures, yellow primary actions, soft blue selections, thick rounded borders, and playful illustrated icons.
+
+Add smooth transitions between screens, satisfying button feedback, pen trails, subtle collision effects, victory animations, and optional vibration feedback.
+
+Provide reduced-motion support and avoid excessive effects that make the game difficult to play.
+
+Use responsive layouts for different Android screen sizes and orientations.
+
+### 13. Audio
+
+Add optional original sound effects for:
+
+- Pen flicks.
+- Pen-to-pen impacts.
+- Pens sliding across wood.
+- Pens falling off the desk.
+- Button interactions.
+- Victory and defeat.
+
+Use original or properly licensed audio. Respect browser autoplay restrictions and allow users to mute all sounds.
+
+### 14. Technical Architecture
+
+Keep the project modular and maintainable.
+
+Separate the game into logical modules such as:
+
+- Game state and match management.
+- Physics and collision resolution.
+- Player controls and aiming.
+- AI decision-making.
+- Rendering and animation.
+- Audio management.
+- UI screens and navigation.
+- Local persistence and statistics.
+- Localization.
+- Settings and profile management.
+
+Use a fixed-step physics simulation, interpolation for rendering where appropriate, and responsive Canvas scaling.
+
+Support mobile touch events without accidental page scrolling or zooming during gameplay.
+
+Avoid unnecessary dependencies. If an external library is used, document its purpose and ensure the game can load it reliably.
+
+### 15. Privacy and Safety
+
+The game should work offline after its required assets have loaded, where technically possible.
+
+Do not collect personal information, request unnecessary permissions, or require sign-in for basic gameplay.
+
+Use local storage for guest progress. Clearly distinguish local features from backend-dependent features.
+
+Online accounts, cloud saves, and online multiplayer must not be represented as functional until they have been implemented and tested.
+
+### 16. Required Deliverables
+
+Deliver a complete, working project, not merely a design mockup.
+
+Include:
+
+1. All required source files.
+2. A playable main menu and complete match flow.
+3. Functional pen selection and gameplay physics.
+4. Working AI difficulty levels.
+5. Local two-player mode.
+6. Functional settings, profile, and statistics.
+7. Responsive mobile controls.
+8. Local progress persistence.
+9. Original or procedurally generated visual assets.
+10. A README explaining how to run, test, and deploy the game.
+11. Clear instructions for publishing it as a mobile-friendly website.
+12. A list of implemented features and any features that still require a backend.
+
+If the coding environment supports live previews, launch the game and test it there.
+
+### 17. Testing Requirements
+
+Before considering the project complete, verify the following:
+
+- The game loads without JavaScript errors.
+- The Play button starts a match.
+- Touch dragging correctly aims and flicks a pen.
+- Shot power changes launch velocity.
+- Pens collide and transfer momentum.
+- Pens can cross the boundary and be eliminated.
+- Winning and losing conditions work.
+- The AI completes its turns.
+- Local two-player mode switches turns correctly.
+- Reset and Play Again restart matches cleanly.
+- Settings persist after refreshing.
+- Statistics update after matches.
+- The game remains usable on narrow Android screens.
+- Pause, sound, and reduced-motion controls behave correctly.
+
+Do not claim a feature has been tested unless it has actually been tested.
+
+### Final Instruction
+
+Start by implementing a fully playable vertical slice: main menu, pen selection, wooden desk arena, accurate touch-based flick controls, collision physics, AI opponent, elimination rules, and victory screen.
+
+Then implement the remaining screens and progression features in stages.
+
+Prioritize **fun, responsive controls, believable physics, mobile performance, and visual consistency** over unnecessary complexity.
+
+The final result should feel like a complete, charming school-desk pen battle game that players can open in a mobile browser and enjoy immediately.

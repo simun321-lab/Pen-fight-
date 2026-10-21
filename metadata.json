@@ -1,0 +1,6 @@
+{
+  "name": "Pen Fight: The School Desk Series",
+  "description": "Nostalgic school desk pen-flicking battle game with realistic 2D physics, AI opponents, pass-and-play local 2-player mode, customizable pens, and school-themed progression.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

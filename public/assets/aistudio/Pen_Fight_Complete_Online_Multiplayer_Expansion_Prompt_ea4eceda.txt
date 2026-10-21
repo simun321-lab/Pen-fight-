@@ -1,0 +1,380 @@
+# PEN FIGHT — COMPLETE ONLINE MULTIPLAYER EXPANSION PROMPT
+
+## MAIN INSTRUCTION
+
+Upgrade my existing Pen Fight game into a complete online multiplayer gaming experience supporting both 2-player duels and 3-player free-for-all matches.
+
+IMPORTANT: Do not rebuild the game from scratch. Do not remove, replace, or damage any existing game mechanics, UI screens, pen physics, animations, menus, assets, or features. Keep the original project and add these new systems as a comprehensive expansion.
+
+First inspect the current codebase and understand its structure. Then integrate the features below into the existing project. Every button, menu, profile action, matchmaking option, and multiplayer feature must be functional—not merely decorative.
+
+# 1. USER ACCOUNT AND PLAYER IDENTITY SYSTEM
+
+Create a complete player identity system.
+
+Each player should have:
+- Unique username that cannot be duplicated.
+- Unique permanent Player ID.
+- Display name and editable profile.
+- Profile avatar with selectable preset avatars.
+- Optional custom profile image upload if supported securely.
+- Online, Offline, In Match, and Away status.
+- Account creation and sign-in.
+- Secure session management.
+- Password reset or account recovery where supported.
+- Guest mode for trying the game, with clear limitations.
+- Guest-to-account upgrade without unnecessarily losing progress.
+- Account sign-out and account deletion option.
+- Username availability checking and username change feature with sensible restrictions.
+- Account creation date, player statistics, match history, preferred language, and basic accessibility settings.
+
+Validate usernames and profile inputs. Prevent impersonation through duplicate usernames and protect account information from unauthorized access.
+
+# 2. PLAYER PROFILE PAGE
+
+Create a detailed player profile screen showing:
+- Avatar and username.
+- Unique Player ID with a Copy ID button.
+- Online status.
+- Total matches played, wins, losses, and win percentage.
+- Current rating or rank and highest rating achieved.
+- Current and best winning streaks.
+- Two-player and three-player match statistics.
+- Recent match results.
+- Favorite pen or equipped cosmetic.
+- Unlocked achievements.
+- Account creation date.
+- Edit Profile, View Friends, and Challenge Player buttons.
+- Report Player and Block Player options.
+
+Only display information intended to be public. Never expose passwords, private credentials, or sensitive account data.
+
+# 3. FRIENDS SYSTEM
+
+Players should be able to:
+- Search for players by exact username or unique Player ID.
+- Send friend requests.
+- Accept or decline incoming requests.
+- Cancel outgoing requests.
+- Remove existing friends.
+- Block or unblock players.
+- View friends list and each friend's online status.
+- See whether a friend is currently playing.
+- Open a friend's profile.
+- Invite a friend to a private room.
+- Challenge a friend to a duel.
+- Invite friends to a three-player match.
+- View pending requests and recently played opponents.
+- Find and re-add previously played opponents.
+
+Prevent duplicate friend requests and handle blocked players correctly. Provide clear feedback for invalid usernames, existing friendships, pending requests, and unavailable players.
+
+# 4. REALTIME USERNAME CHALLENGE SYSTEM
+
+When a player searches for another username, show the matching profile and available actions.
+
+A player must be able to:
+1. Open the target player's profile.
+2. Select Challenge.
+3. Choose a 2-player duel or a 3-player match invitation.
+4. Send a challenge notification.
+5. See whether the request is pending.
+6. Cancel a pending challenge.
+7. Receive an acceptance or decline notification.
+8. Enter the match lobby after acceptance.
+
+The receiving player should be able to accept or decline. If the recipient is offline, show a suitable unavailable message or deliver a pending notification where supported.
+
+Challenge requests must expire after a configurable period. Prevent duplicate requests, self-challenges, spam, and challenges to blocked users. If the receiving player becomes unavailable, show a clear explanation.
+
+For a three-player challenge, let the challenger invite two opponents or invite one opponent and fill the remaining slot through matchmaking, if the host chooses that option.
+
+# 5. ONLINE MULTIPLAYER MODES
+
+## A. Two-Player Duel
+- Exactly two players.
+- Both players join the same match instance.
+- Shared match state and fair turn order.
+- Synchronized pen positions and collisions.
+- Server-validated actions.
+- Clear winner and loser.
+- Match rematch option.
+
+## B. Three-Player Free-for-All
+- Exactly three players.
+- Every player competes independently.
+- Each player has a distinct identity and pen.
+- All players see the same desk, pen positions, turns, and collision results.
+- Rotate turns fairly among active players.
+- Handle player elimination consistently.
+- The last remaining active player wins.
+- If the existing rules support another win condition, preserve it where compatible and make the selected rules clear before the match.
+- Provide a rematch with the same players.
+
+Do not turn the three-player mode into a team match unless a separate team mode is added intentionally.
+
+# 6. PRIVATE ROOM CREATION AND JOINING
+
+The host should be able to:
+- Create a room.
+- Select 2-player or 3-player capacity.
+- Choose a public or private room where supported.
+- Generate a unique room code.
+- Copy and share the room code.
+- Invite friends directly.
+- Set a lobby password optionally.
+- View joined players.
+- Remove an invited player from the lobby when appropriate.
+- Start the match when all required slots are filled and players are ready.
+- Cancel the room and leave safely.
+
+Players joining through a room code should see the correct lobby and player list.
+
+Show room occupancy clearly: 1/2, 2/2, 1/3, 2/3, and 3/3 players.
+
+Prevent additional players from entering a full room. Handle expired codes, invalid codes, closed rooms, disconnected hosts, and already-started matches gracefully.
+
+If the host leaves before the match begins, transfer host authority to another eligible player or close the lobby with a clear message. Never silently start a match with the wrong number of players.
+
+# 7. QUICK MATCHMAKING
+
+Add Quick Play options:
+- Quick 1v1.
+- Quick 3-player Free-for-All.
+- Invite Friends.
+- Join Private Room.
+
+Matchmaking should search for eligible players using a fair and efficient queue. Avoid putting the same player into multiple simultaneous matches.
+
+Display searching, players found, match found, joining lobby, match starting, and cancel-search states. Add a timeout and retry option if no opponents are found. If rating-based matchmaking is available, prefer players with similar skill levels. Never create fake online users to make queues look populated.
+
+# 8. COMPLETE MULTIPLAYER LOBBY
+
+Before every online match, show:
+- Room code and match type.
+- Selected player capacity.
+- All participant avatars.
+- Usernames and Player IDs where appropriate.
+- Online and ready status.
+- Host indicator.
+- Ready/Not Ready toggle.
+- Invite Friends and Copy Room Code buttons.
+- Leave Room button.
+- Start Match button for the host.
+- Countdown before starting.
+- Connection status.
+- Clear player-slot indicators.
+
+For three-player matches, display three distinct player slots. Do not start until all required players are ready. If a participant disconnects, update the lobby and apply a sensible timeout or reconnection policy.
+
+# 9. TURN SYSTEM AND FAIR GAMEPLAY
+
+Adapt the existing Pen Fight mechanics for network play:
+- Server-authoritative turn management.
+- Correct turn order for two and three players.
+- Visible current-turn indicator and turn timer.
+- Clear indicator of whose move comes next.
+- Input restrictions when it is not the player's turn.
+- Validation of aim direction, power, and legal moves.
+- Synchronized pen launches and collisions.
+- Desk boundary interactions, elimination, and winner determination.
+- Protection against duplicate, invalid, or repeated move submissions.
+- Consistent game state for every participant.
+
+Keep the original aiming controls, power control, pen movement, friction, collision response, desk boundaries, and animations wherever possible. Do not allow a player to modify another player's pen or directly overwrite authoritative match results.
+
+# 10. REALTIME GAME SYNCHRONIZATION
+
+All participants must see the same match. Synchronize:
+- Player joins and leaves.
+- Current turn.
+- Aim and power submissions.
+- Pen launches and positions.
+- Collision events and desk boundary interactions.
+- Eliminations and match timer.
+- Pauses where supported.
+- Final results.
+
+Use a suitable realtime backend and server-side validation. Handle network latency, delayed messages, reconnects, and conflicting actions.
+
+The server must be the authority for player membership, turn ownership, legal moves, match completion, and verified results. Use appropriate state reconciliation so temporary visual differences do not permanently desynchronize the match. Do not trust client-submitted winner declarations or client-controlled ratings.
+
+# 11. CONNECTION AND RECONNECTION SYSTEM
+
+Implement connecting, connected, poor connection, reconnecting, and connection-lost indicators; a retry button; safe rejoining to an ongoing match; server-side tracking of disconnected players; a configurable reconnection window; fair timeout rules; and a clear outcome if a player never returns.
+
+Temporary disconnection should not instantly corrupt or reset the match. If the game cannot continue fairly, end or pause it according to defined rules and notify all participants. Never allow a reconnecting client to overwrite the current authoritative match state.
+
+# 12. IN-GAME CHAT AND EMOTES
+
+Add optional lightweight in-game communication:
+- Preset quick-chat messages.
+- Emoji reactions.
+- Ready and Good Game messages.
+- Rematch invitation.
+- Mute player and Report player options.
+
+If text chat is implemented, include basic moderation, message length limits, rate limiting, and block controls. Avoid exposing personal contact information. Chat should be optional and should not interfere with aiming or gameplay.
+
+# 13. NOTIFICATION CENTER
+
+Create notifications for friend requests, accepted friend requests, incoming challenges, accepted or declined challenges, room invitations, match found, friends coming online, match completion, achievement unlocks, and rematch invitations.
+
+Provide unread counts and a way to clear or mark notifications as read. Use in-app notifications first. Browser notifications should only be used when supported and after obtaining permission. Do not claim push notifications work when the browser or backend has not been configured for them.
+
+# 14. MATCH HISTORY AND DETAILED RESULTS
+
+Save verified online match records containing:
+- Unique match ID.
+- Match type.
+- Date and time.
+- Participants.
+- Final placements and winner.
+- Match duration.
+- Player actions or move count where useful.
+- Rating changes if ranked mode is enabled.
+- Match result status.
+
+Provide recent matches, wins and losses, two-player history, three-player history, opponent profile links, rematch button, report-match option, and pagination or efficient history loading.
+
+For a three-player match, record all three participants and their final placements consistently. Prevent duplicate result saving if a network request is retried.
+
+# 15. RANKING, RATINGS, AND LEADERBOARDS
+
+Create a rating system for online play:
+- Separate 1v1 and three-player ratings where appropriate.
+- Player rank or tier.
+- Current rating and highest rating.
+- Global, friends, weekly, and all-time leaderboards.
+- Match count, win rate, and ranking updates after verified matches.
+
+Use a fair rating calculation appropriate to the match type. A three-player match must not be treated as a simple two-player result. Consider placements and opponents' ratings.
+
+Only verified, completed matches should affect competitive ratings. Prevent rating farming, duplicate results, and suspicious match manipulation. If the ranking system is not ready, mark it clearly as unavailable rather than displaying fabricated rankings.
+
+# 16. ACHIEVEMENTS AND PLAYER PROGRESSION
+
+Add achievements such as First Online Match, First Victory, Ten Online Matches, Five Consecutive Wins, Three-Player Champion, Comeback Victory, Play With Friends, and Veteran Player.
+
+Track achievements on the backend and unlock them only after verified events. Display progress, unlock notifications, and earned badges on the player's profile. Do not reward repeated fake or invalid match submissions.
+
+# 17. PEN COSMETICS AND PLAYER CUSTOMIZATION
+
+If compatible with the existing game, add cosmetic customization without changing competitive physics:
+- Pen skins and colors.
+- Trail effects.
+- Player badges and profile frames.
+- Victory animations.
+- Cosmetic inventory and equipped items.
+
+Cosmetics should be earned or selected according to the existing progression system. Do not create pay-to-win advantages or change collision strength based on cosmetic purchases. Synchronize cosmetic choices with all match participants.
+
+# 18. PUBLIC ROOMS AND ROOM BROWSER
+
+If public matchmaking rooms are supported, add a room browser showing room identifier, host username, match type, player capacity, current occupancy, match status, and Join button.
+
+Allow filtering by 2-player and 3-player rooms. Hide full, expired, and already-started rooms. Do not expose private room details to unauthorized users.
+
+# 19. PLAYER SAFETY AND ANTI-ABUSE
+
+Implement block player, report player, report match, challenge rate limits, friend-request rate limits, chat rate limits, username validation, server-side permission checks, session validation, protection against unauthorized room access, protection against fabricated match results, basic abuse logging, and safe error messages that do not leak internal credentials.
+
+Blocked users should not be able to keep sending challenges or unwanted invitations to the blocker.
+
+# 20. RESPONSIVE MOBILE-FIRST UI
+
+The game must work smoothly on Android mobile browsers and desktop browsers.
+
+Ensure responsive layouts, touch-friendly buttons, proper touch input for aiming and power, no accidental page scrolling during gameplay, safe-area spacing on mobile, readable player names and status indicators, clear loading and error states, keyboard accessibility where appropriate, no horizontal overflow, and lightweight assets with efficient rendering.
+
+Keep the original Pen Fight visual identity. New multiplayer screens should match the existing game's visual style rather than looking like an unrelated application.
+
+# 21. BACKEND, DATABASE, AND SECURITY
+
+Inspect the existing backend before choosing or adding technology. If a backend already exists, extend it without unnecessarily replacing its architecture.
+
+If no backend exists, choose an appropriate realtime-capable service, such as a properly configured Supabase setup or another suitable solution.
+
+Design secure data structures for player profiles, account identities, friend relationships, friend requests, challenges, notifications, rooms and room membership, active matches, match actions or state, match results, ratings, achievements, reports, and blocks.
+
+Use authentication, authorization, database constraints, and row-level security or equivalent controls where applicable.
+
+Never expose service-role keys, database passwords, or private server credentials in client-side code. Validate sensitive actions on the server. Add indexes and appropriate cleanup for expired challenges, abandoned rooms, and stale matchmaking entries.
+
+Do not create a frontend-only imitation and label it real online multiplayer. All players on separate devices must connect through the actual backend.
+
+# 22. PERFORMANCE AND RELIABILITY
+
+Optimize for mobile connections and lower-powered devices. Include:
+- Efficient realtime subscriptions.
+- Cleanup of subscriptions when leaving screens or matches.
+- Avoidance of duplicate event listeners.
+- Retry handling for temporary network failures.
+- Loading indicators and graceful error handling.
+- Pagination for friends and match history.
+- Efficient asset loading.
+- Protection against duplicate room creation and duplicate match completion.
+- Server-side cleanup of expired sessions and abandoned rooms.
+
+Do not repeatedly reload the whole game when a small state update is sufficient.
+
+# 23. TESTING REQUIREMENTS
+
+Test the following using separate browser sessions and, ideally, separate devices:
+
+1. Two players create and complete a duel.
+2. Three players create and complete a free-for-all match.
+3. A player searches for a username.
+4. Friend requests can be sent, accepted, declined, and removed.
+5. A username challenge can be accepted or declined.
+6. A room code allows the correct players to join.
+7. A fourth player cannot enter a full three-player room.
+8. The game starts only when the correct number of players are ready.
+9. Turn order remains correct.
+10. All players see consistent pen movements and collisions.
+11. Disconnection and reconnection work correctly.
+12. Match results are identical for all participants.
+13. Match history and rating updates are saved only once.
+14. Blocking prevents unwanted contact.
+15. Invalid requests and unauthorized actions are rejected.
+16. Refreshing a browser does not corrupt an active match.
+17. Mobile touch controls remain usable.
+18. The original offline or single-player functionality still works.
+
+Fix all critical errors discovered during testing. Do not claim that a feature is tested successfully unless it has actually been tested.
+
+# 24. IMPLEMENTATION WORKFLOW
+
+Follow this sequence:
+
+Phase 1: Inspect the existing project and identify its architecture, UI screens, game state, and backend.
+
+Phase 2: Implement account identity, usernames, player profiles, and secure sessions.
+
+Phase 3: Implement friends, search, requests, challenges, and notifications.
+
+Phase 4: Implement private rooms, room codes, lobby readiness, and two-player matchmaking.
+
+Phase 5: Extend the match engine for three-player free-for-all and fair turn rotation.
+
+Phase 6: Implement authoritative realtime synchronization, reconnection, and verified results.
+
+Phase 7: Add match history, rankings, achievements, chat, and other compatible social features.
+
+Phase 8: Test both match types on separate sessions and devices, fix issues, and verify that the original game remains functional.
+
+Do not stop after creating UI mockups. Implement the actual application logic and backend integrations wherever the current environment and available credentials allow.
+
+If external configuration is required, such as backend credentials, database setup, deployment, or authentication provider settings, explain exactly what is missing and provide step-by-step setup instructions. Never fabricate credentials or claim deployment has occurred when it has not.
+
+# FINAL REQUIREMENT
+
+Deliver an integrated upgrade to the existing Pen Fight project, not a separate unrelated demo. Preserve all existing functionality and implement the complete two-player and three-player online multiplayer experience described above.
+
+At the end, provide a concise implementation report listing:
+- Features implemented.
+- Database and backend changes.
+- Configuration still required.
+- Tests actually completed.
+- Known limitations.
+- Exact steps needed to launch the game and play online with other people.
